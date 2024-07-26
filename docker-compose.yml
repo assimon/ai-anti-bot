@@ -1,0 +1,11 @@
+services:
+  ai-anti-bot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: ai-anti-bot:latest
+    container_name: ai-anti-bot
+    restart: always
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./data.db:/app/data.db

@@ -183,7 +183,7 @@ func OnPhotoMessage(c tb.Context) error {
 	return nil
 }
 
-func OnOnUserJoinedMessage(c tb.Context) error {
+func OnChatMemberMessage(c tb.Context) error {
 	user := database.UserInfo{
 		TelegramUserId:    c.Sender().ID,
 		TelegramChatId:    c.Chat().ID,

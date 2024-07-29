@@ -58,5 +58,5 @@ func RegisterHandle() {
 	Bot.Handle(tb.OnText, OnTextMessage, PreGroupMiddleware)
 	Bot.Handle(tb.OnSticker, OnStickerMessage, PreGroupMiddleware)
 	Bot.Handle(tb.OnPhoto, OnPhotoMessage, PreGroupMiddleware)
-	Bot.Handle(tb.OnUserJoined, OnOnUserJoinedMessage, PreGroupMiddleware)
+	Bot.Handle(tb.OnChatMember, OnChatMemberMessage, PreGroupMiddleware)
 }

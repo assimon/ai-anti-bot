@@ -1,6 +1,7 @@
 package bot
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 	tb "gopkg.in/telebot.v3"
 	"time"
@@ -15,7 +16,15 @@ func Start() error {
 	setting := tb.Settings{
 		Token:   viper.GetString("telegram.token"),
 		Updates: 100,
-		Poller:  &tb.LongPoller{Timeout: 10 * time.Second},
+		Poller: &tb.LongPoller{Timeout: 10 * time.Second, AllowedUpdates: []string{
+			"message",
+			"chat_member",
+			"inline_query",
+			"callback_query",
+		}},
+		OnError: func(err error, context tb.Context) {
+			fmt.Printf("%+v\n", err)
+		},
 	}
 	if viper.GetString("telegram.proxy") != "" {
 		setting.URL = viper.GetString("telegram.proxy")

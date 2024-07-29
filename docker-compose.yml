@@ -7,5 +7,4 @@ services:
     container_name: ai-anti-bot
     restart: always
     volumes:
-      - ./config.yml:/app/config.yml
-      - ./data.db:/app/data.db
+      - ./data:/app/data

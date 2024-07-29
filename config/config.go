@@ -14,7 +14,7 @@ func init() {
 	viper.SetConfigName(CfgFileName)
 	viper.SetConfigType(CfgFileType)
 	viper.AddConfigPath(".")
-	viper.AddConfigPath("../")
+	viper.AddConfigPath("./data")
 	err := viper.ReadInConfig()
 	if err != nil {
 		log.Fatalf("%s\n", err.Error())

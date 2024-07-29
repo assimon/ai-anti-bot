@@ -34,11 +34,11 @@ func PreCheck(c tb.Context) (user *database.UserInfo, needCheck bool, err error)
 		return
 	}
 	if user.VerificationTimes > viper.GetInt64("strategy.verification_times") {
-		return user, false, nil
+		return
 	}
 	diffDay := carbon.Now().DiffAbsInDays(carbon.Parse(user.JoinedTime.ToDateTimeString()))
 	if diffDay > viper.GetInt64("strategy.joined_time") || user.NumberOfSpeeches > viper.GetInt64("strategy.number_of_speeches") {
-		return user, false, nil
+		return
 	}
 	return user, true, nil
 }

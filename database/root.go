@@ -11,7 +11,7 @@ var Gdb *gorm.DB
 
 func init() {
 	var err error
-	Gdb, err = gorm.Open(sqlite.Open("data.db"), &gorm.Config{
+	Gdb, err = gorm.Open(sqlite.Open("./data/data.db"), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {

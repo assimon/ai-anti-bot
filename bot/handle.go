@@ -19,9 +19,6 @@ var (
 )
 
 func PreCheck(c tb.Context) (user *database.UserInfo, needCheck bool, err error) {
-	if c.Message().Private() {
-		return
-	}
 	if isManage(c.Chat(), c.Sender().ID) {
 		return
 	}

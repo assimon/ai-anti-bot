@@ -50,13 +50,17 @@ func RegisterHandle() {
 	Bot.Handle(StartCmd, func(c tb.Context) error {
 		return c.Send("🙋hi,I am an AI anti-advertising robot. My father is Assimon. github.com/assimon")
 	}, PreCmdMiddleware)
+	creatorOnly := Bot.Group()
+	creatorOnly.Use(CreatorCmdMiddleware)
+	creatorOnly.Handle(AllAdCmd, AllAd)
+	creatorOnly.Handle(AddAdCmd, AddAd)
+	creatorOnly.Handle(DelAdCmd, DelAd)
 
-	Bot.Handle(AllAdCmd, AllAd, CreatorCmdMiddleware)
-	Bot.Handle(AddAdCmd, AddAd, CreatorCmdMiddleware)
-	Bot.Handle(DelAdCmd, DelAd, CreatorCmdMiddleware)
+	groupOnly := Bot.Group()
+	groupOnly.Use(PreGroupMiddleware)
+	groupOnly.Handle(tb.OnText, OnTextMessage)
+	groupOnly.Handle(tb.OnSticker, OnStickerMessage)
+	groupOnly.Handle(tb.OnPhoto, OnPhotoMessage)
 
-	Bot.Handle(tb.OnText, OnTextMessage, PreGroupMiddleware)
-	Bot.Handle(tb.OnSticker, OnStickerMessage, PreGroupMiddleware)
-	Bot.Handle(tb.OnPhoto, OnPhotoMessage, PreGroupMiddleware)
-	Bot.Handle(tb.OnChatMember, OnChatMemberMessage, PreGroupMiddleware)
+	Bot.Handle(tb.OnChatMember, OnChatMemberMessage)
 }

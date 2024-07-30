@@ -20,13 +20,10 @@ func isManageMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 
 func PreGroupMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 	return func(c tb.Context) error {
-		if c.Message().Private() {
-			return next(c)
+		if !c.Message().FromGroup() {
+			return nil
 		}
 		groups := viper.GetStringSlice("telegram.groups")
-		if len(groups) == 0 {
-			return next(c)
-		}
 		for _, group := range groups {
 			id, err := strconv.ParseInt(group, 10, 64)
 			if err != nil {
@@ -42,10 +39,7 @@ func PreGroupMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 
 func PreCmdMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 	return func(c tb.Context) error {
-		if c.Message().Private() {
-			return next(c)
-		}
-		if !isManage(c.Chat(), c.Sender().ID) {
+		if c.Message().FromGroup() && !isManage(c.Chat(), c.Sender().ID) {
 			c.Delete()
 		}
 		return next(c)
@@ -54,9 +48,6 @@ func PreCmdMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 
 func CreatorCmdMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 	return func(c tb.Context) error {
-		if !c.Message().Private() {
-			return c.Delete()
-		}
 		if !isOwner(c.Sender().ID) {
 			return nil
 		}

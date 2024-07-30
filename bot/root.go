@@ -40,9 +40,11 @@ func Start() error {
 }
 
 func RegisterCommands() {
-	_ = Bot.SetCommands(tb.Command{
-		Text:        StartCmd,
-		Description: "Hello🙌",
+	_ = Bot.SetCommands([]tb.Command{
+		{
+			Text:        StartCmd,
+			Description: "Hello🙌",
+		},
 	})
 }
 

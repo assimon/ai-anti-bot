@@ -9,6 +9,7 @@ import (
 	tb "gopkg.in/telebot.v3"
 	"log"
 	"strconv"
+	"unicode/utf8"
 )
 
 func Identifier() adapter.IModel {
@@ -58,9 +59,10 @@ func BanChatMember(c tb.Context, res *adapter.RecognizeResult) (err error) {
 	userId := c.Message().Sender.ID
 	blockMessage := fmt.Sprintf(
 		viper.GetString("message.block_hint"),
-		userNickname,
+		ProcessNickname(userNickname),
 		userLink,
 		res.SpamScore,
+		res.SpamReason,
 		res.SpamMockText,
 	)
 	// ban user
@@ -107,5 +109,22 @@ func LoadAdMenuBtn(menu *tb.ReplyMarkup) {
 				},
 			})
 		}
+	}
+}
+
+func ProcessNickname(nickname string) string {
+	length := utf8.RuneCountInString(nickname)
+	switch length {
+	case 1:
+		return "||" + nickname + "||"
+	case 2:
+		runes := []rune(nickname)
+		return string(runes[0]) + "||" + string(runes[1]) + "||"
+	default:
+		runes := []rune(nickname)
+		if length > 2 {
+			return string(runes[0]) + "||" + string(runes[1:length-1]) + "||" + string(runes[length-1])
+		}
+		return nickname
 	}
 }

@@ -55,7 +55,7 @@ func OnTextMessage(c tb.Context) error {
 			viper.GetString("prompt.user_info"),
 			c.Sender().LastName,
 			c.Sender().FirstName,
-			user.NumberOfSpeeches,
+			user.NumberOfSpeeches+1,
 			user.JoinedTime.ToDateTimeString(),
 		)
 		res, err := Identifier().RecognizeTextMessage(context.Background(), userInfo, c.Message().Text)

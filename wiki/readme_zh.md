@@ -18,8 +18,9 @@ Anti-spam robot for [Telegram](https://telegram.org/) groups
 如果你是`开发者`，你可以利用本项目熟悉`Go语言`与`Telegram`的交互式开发，以便后续利用`Api`开发出自己的机器人！
 
 ## 参考：   
-Telegram Api文档：[Telegram Api](https://core.telegram.org/bots/api)      
-机器人开发框架：[Telebot](https://github.com/tucnak/telebot)
+- Telegram Api: [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api)
+- Telebot: [https://github.com/tucnak/telebot](https://github.com/tucnak/telebot)
+- go-openai: [github.com/sashabaranov/go-openai](github.com/sashabaranov/go-openai)
 
 ## 使用方式
 

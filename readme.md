@@ -20,9 +20,9 @@ If you are a `developer`, you can use this project to familiarize yourself with 
 
 
 ## References：
-- Telegram Api：[Telegram Api](https://core.telegram.org/bots/api)      
-- Telebot：[Telebot](https://github.com/tucnak/telebot)
-
+- Telegram Api: [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api)      
+- Telebot: [https://github.com/tucnak/telebot](https://github.com/tucnak/telebot)
+- go-openai: [github.com/sashabaranov/go-openai](github.com/sashabaranov/go-openai)
 
 ## How to use
 

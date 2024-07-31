@@ -20,7 +20,7 @@ Anti-spam robot for [Telegram](https://telegram.org/) groups
 ## 参考：   
 - Telegram Api: [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api)
 - Telebot: [https://github.com/tucnak/telebot](https://github.com/tucnak/telebot)
-- go-openai: [github.com/sashabaranov/go-openai](github.com/sashabaranov/go-openai)
+- go-openai: [https://github.com/sashabaranov/go-openai](https://github.com/sashabaranov/go-openai)
 
 ## 使用方式
 

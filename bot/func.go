@@ -9,6 +9,7 @@ import (
 	tb "gopkg.in/telebot.v3"
 	"log"
 	"strconv"
+	"time"
 	"unicode/utf8"
 )
 
@@ -90,9 +91,16 @@ func BanChatMember(c tb.Context, res *adapter.RecognizeResult) (err error) {
 		}
 		return c.Send(fmt.Sprintf("The administrator has unbanned user: [%s](%s)", userNickname, userLink), tb.ModeMarkdownV2)
 	}, isManageMiddleware)
-	if err = c.Reply(blockMessage, manslaughterMenu, tb.ModeMarkdownV2); err != nil {
+	msg, err := Bot.Send(c.Chat(), blockMessage, manslaughterMenu, tb.ModeMarkdownV2)
+	if err != nil {
 		return err
 	}
+	time.AfterFunc(time.Minute, func() {
+		err = Bot.Delete(msg)
+		if err != nil {
+			log.Println(err)
+		}
+	})
 	return
 }
 

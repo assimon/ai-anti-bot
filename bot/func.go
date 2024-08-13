@@ -95,7 +95,7 @@ func BanChatMember(c tb.Context, res *adapter.RecognizeResult) (err error) {
 	if err != nil {
 		return err
 	}
-	time.AfterFunc(time.Minute, func() {
+	time.AfterFunc(time.Minute*2, func() {
 		err = Bot.Delete(msg)
 		if err != nil {
 			log.Println(err)

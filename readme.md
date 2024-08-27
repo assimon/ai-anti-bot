@@ -51,6 +51,7 @@ telegram:
   groups: [""]  # Fill in the group id where the robot needs to take effect
   owners: [""]  # Fill in the super administrator's telegram user ID
 identification_model: "chatgpt"
+clean_bot_message: true # Scheduled cleaning of robot messages
 
 # The following is the judgment strategy. For example, 
 # the meaning of the following configuration item is: If you have joined the group for more than 3 days and have spoken more than 3 times or have been verified once, you do not need to verify again.

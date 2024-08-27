@@ -10,8 +10,10 @@ import (
 	"github.com/spf13/viper"
 	tb "gopkg.in/telebot.v3"
 	"io"
+	"log"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var (
@@ -44,6 +46,14 @@ func OnTextMessage(c tb.Context) error {
 	user, needCheck, err := PreCheck(c)
 	if err != nil {
 		return err
+	}
+	if c.Sender().IsBot && viper.GetBool("clean_bot_message") {
+		time.AfterFunc(time.Minute, func() {
+			err = c.Delete()
+			if err != nil {
+				log.Println(err)
+			}
+		})
 	}
 	if user != nil {
 		defer func() {

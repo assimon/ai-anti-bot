@@ -49,6 +49,7 @@ telegram:
   groups: [""]  # 运行机器人生效的群组id，可配置多个，英文逗号分割
   owners: [""]  # 超级管理员id，可配置多个，英文逗号分割
 identification_model: "chatgpt"
+clean_bot_message: true # 定时清理机器人消息
 
 # 下面是判断策略，比如
 # 下面配置项的含义是：如果你入群超过3天，发言超过3次或者已经验证过1次，就不需要再验证了。

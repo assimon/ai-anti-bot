@@ -4,6 +4,7 @@ telegram:
   groups: [""]
   owners: [""]
 identification_model: "chatgpt"
+clean_bot_message: false
 
 strategy:
   joined_time: 3

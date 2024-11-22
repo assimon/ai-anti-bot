@@ -43,14 +43,14 @@ func RegisterCommands() {
 	_ = Bot.SetCommands([]tb.Command{
 		{
 			Text:        StartCmd,
-			Description: "Hello🙌",
+			Description: "欢迎🙌",
 		},
 	})
 }
 
 func RegisterHandle() {
 	Bot.Handle(StartCmd, func(c tb.Context) error {
-		return c.Send("🙋hi,I am an AI anti-advertising robot. My father is Assimon. github.com/assimon/ai-anti-bot")
+		return c.Send("🙋欢迎使用叫我沈同学反广告机器人，一款基于GPT4的反广告机器人，开通使用权限需联系沈同学\n\nPowered By Shentx")
 	}, PreCmdMiddleware)
 	creatorOnly := Bot.Group()
 	creatorOnly.Use(CreatorCmdMiddleware)

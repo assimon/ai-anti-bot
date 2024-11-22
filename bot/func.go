@@ -75,7 +75,7 @@ func BanChatMember(c tb.Context, res *adapter.RecognizeResult) (err error) {
 	if err != nil {
 		return err
 	}
-	manslaughterBtn := manslaughterMenu.Data("👮🏻Unblock", strconv.FormatInt(userId, 10))
+	manslaughterBtn := manslaughterMenu.Data("👮🏻解封（管理员）", strconv.FormatInt(userId, 10))
 	manslaughterMenu.Inline(manslaughterMenu.Row(manslaughterBtn))
 	LoadAdMenuBtn(manslaughterMenu)
 	Bot.Handle(&manslaughterBtn, func(c tb.Context) error {
@@ -89,7 +89,7 @@ func BanChatMember(c tb.Context, res *adapter.RecognizeResult) (err error) {
 		if err != nil {
 			return err
 		}
-		return c.Send(fmt.Sprintf("The administrator has unbanned user: [%s](%s)", userNickname, userLink), tb.ModeMarkdownV2)
+		return c.Send(fmt.Sprintf("管理员已成功解封用户: [%s](%s)", userNickname, userLink), tb.ModeMarkdownV2)
 	}, isManageMiddleware)
 	msg, err := Bot.Send(c.Chat(), blockMessage, manslaughterMenu, tb.ModeMarkdownV2)
 	if err != nil {

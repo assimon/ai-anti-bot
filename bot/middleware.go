@@ -12,7 +12,7 @@ func isManageMiddleware(next tb.HandlerFunc) tb.HandlerFunc {
 			return next(c)
 		}
 		return c.Respond(&tb.CallbackResponse{
-			Text:      "You are not an administrator",
+			Text:      "💢点什么，你又不是管理员",
 			ShowAlert: true,
 		})
 	}

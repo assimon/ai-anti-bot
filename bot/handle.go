@@ -206,7 +206,7 @@ func AddAd(c tb.Context) error {
 	payload := c.Message().Payload
 	payloadSlice := strings.Split(payload, "|")
 	if len(payloadSlice) != 4 {
-		return c.Send("Message format error")
+		return c.Send("❌格式错误")
 	}
 	title := payloadSlice[0]
 	url := payloadSlice[1]
@@ -220,9 +220,9 @@ func AddAd(c tb.Context) error {
 	}
 	err := database.AddAdvertise(ad)
 	if err != nil {
-		return c.Send("Failed to add ad:" + err.Error())
+		return c.Send("❌无法添加推广:" + err.Error())
 	}
-	if err = c.Send("Added ad successfully"); err != nil {
+	if err = c.Send("✅成功添加推广"); err != nil {
 		fmt.Println("[AddAd] send success message err:", err)
 	}
 	return AllAd(c)
@@ -231,11 +231,11 @@ func AddAd(c tb.Context) error {
 func AllAd(c tb.Context) error {
 	adList, err := database.AllAdvertise()
 	if err != nil {
-		return c.Send("Failed to get ad，err:" + err.Error())
+		return c.Send("❌无法获取推广:" + err.Error())
 	}
-	table := "All ads：\n"
+	table := "💾全部推广：\n"
 	for _, advertise := range adList {
-		table += fmt.Sprintf("Id:%d|Title:%s|Url:%s|Sort:%d|ValidityPeriod:%s|CreatedAt:%s \n",
+		table += fmt.Sprintf("Id:%d\n推广名:%s 链接:%s 排序:%d 到期时间:%s 创建时间:%s \n",
 			advertise.ID,
 			advertise.Title,
 			advertise.Url,
@@ -250,7 +250,7 @@ func AllAd(c tb.Context) error {
 func DelAd(c tb.Context) error {
 	payload := c.Message().Payload
 	if payload == "" {
-		return c.Send("Message format error")
+		return c.Send("❌格式错误")
 	}
 	id, err := strconv.ParseInt(payload, 10, 64)
 	if err != nil {
@@ -259,7 +259,7 @@ func DelAd(c tb.Context) error {
 	if err = database.DeleteAdvertise(id); err != nil {
 		return c.Send(err.Error())
 	}
-	if err = c.Send("Ads deleted successfully！"); err != nil {
+	if err = c.Send("✅成功删除推广"); err != nil {
 		fmt.Println("[DelAd] send success message err:", err)
 	}
 	return AllAd(c)

@@ -76,6 +76,10 @@ func OnTextMessage(c tb.Context) error {
 			_ = database.IncrementVerificationTimes(user)
 			return nil
 		}
+		if res.SpamScore < viper.GetInt("strategy.score") {
+			_ = database.IncrementVerificationTimes(user)
+			return nil
+		}
 		if err = BanChatMember(c, &res); err != nil {
 			return err
 		}
@@ -125,6 +129,10 @@ func OnStickerMessage(c tb.Context) error {
 			_ = database.IncrementVerificationTimes(user)
 			return nil
 		}
+		if res.SpamScore < viper.GetInt("strategy.score") {
+			_ = database.IncrementVerificationTimes(user)
+			return nil
+		}
 		if err = BanChatMember(c, &res); err != nil {
 			return err
 		}
@@ -171,6 +179,10 @@ func OnPhotoMessage(c tb.Context) error {
 		)
 		res, err := Identifier().RecognizeImageMessage(context.Background(), userInfo, baseEncStr)
 		if res.State == 0 {
+			_ = database.IncrementVerificationTimes(user)
+			return nil
+		}
+		if res.SpamScore < viper.GetInt("strategy.score") {
 			_ = database.IncrementVerificationTimes(user)
 			return nil
 		}

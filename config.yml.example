@@ -10,6 +10,7 @@ strategy:
   joined_time: 3
   number_of_speeches: 3
   verification_times: 1
+  score: 80
 
 chatgpt:
   proxy: ""

@@ -53,12 +53,15 @@ clean_bot_message: true # 定时清理机器人消息
 
 # 下面是判断策略，比如
 # 下面配置项的含义是：如果你入群超过3天，发言超过3次或者已经验证过1次，就不需要再验证了。
+# 或者威胁分数超过多少才执行封禁
 # 这个是为了节省你的token，没必要无时无刻检测😊
 strategy:
   joined_time: 3
   number_of_speeches: 3
   verification_times: 1
-  
+  score: 80
+
+
 chatgpt:
   proxy: ""   # openai的代理地址，没有就不填写
   apikey: ""  # apikey

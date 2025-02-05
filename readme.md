@@ -55,12 +55,15 @@ clean_bot_message: true # Scheduled cleaning of robot messages
 
 # The following is the judgment strategy. For example, 
 # the meaning of the following configuration item is: If you have joined the group for more than 3 days and have spoken more than 3 times or have been verified once, you do not need to verify again.
+# Or the threat score must exceed a certain limit before a ban is executed
 # This is to save your tokens😊
 strategy:
   joined_time: 3
   number_of_speeches: 3
   verification_times: 1
-  
+  score: 80
+
+
 chatgpt:
   proxy: ""   # OpenAI's proxy address, if necessary
   apikey: ""  # apikey
